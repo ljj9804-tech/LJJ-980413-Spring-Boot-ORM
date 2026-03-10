@@ -27,7 +27,7 @@ public class BoardController {
 
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model) {
-//        PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
+        //PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
 
         // 기존 목록에, 댓글 갯수 포함된 , 서비스 메서드로 교체 작업.
         PageResponseDTO<BoardListReplyCountDTO> responseDTO = boardService.listWithReplyCount(pageRequestDTO);
@@ -57,7 +57,6 @@ public class BoardController {
         Long bno = boardService.register(boardDTO);
         redirectAttributes.addFlashAttribute("result", bno);
         return "redirect:/board/list";
-
     }
 
     @GetMapping({"/read","/modify"})
