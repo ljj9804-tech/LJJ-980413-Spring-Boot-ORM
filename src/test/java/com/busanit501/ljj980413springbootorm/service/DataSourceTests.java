@@ -1,0 +1,30 @@
+package com.busanit501.ljj980413springbootorm.service;
+
+import lombok.Cleanup;
+import lombok.extern.log4j.Log4j2;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+@SpringBootTest
+@Log4j2
+public class DataSourceTests {
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Test
+    public void testConnection() throws SQLException {
+
+        @Cleanup
+        Connection con = dataSource.getConnection();
+        log.info("연결테스트 확인 : " +con);
+        Assertions.assertNotNull(con);
+        // con이 null이 아니면 테스트 통과!
+    }
+}
